@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "zssn"
+version = "0.1.0"
+description = "System for sharing resources between uninfected humans"
+authors = ["Marcos Raulino <marcosfsraulino@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.4"
+djangorestframework = "^3.14.0"
+psycopg2-binary = "^2.9.7"
+
+[tool.poetry.group.dev.dependencies]
+blue = "^0.9.1"
+isort = "^5.12.0"
+python-dotenv = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
