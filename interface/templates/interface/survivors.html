@@ -1,0 +1,45 @@
+{% extends 'interface/base.html' %}
+{% block content %}
+<div tabindex="0" class="content" onfocus="closeSidebar()" id="content">
+    <div class="title-container">
+        <h1>Survivors</h1>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Infected</th>
+                    <th>Total Points</th>
+                    <th>Received Reports</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for survivor in survivors %}
+                <tr>
+                    <td>{{ survivor.name }}</td>
+                    <td>{{ survivor.age }}</td>
+                    <td>{{ survivor.gender }}</td>
+                    <td>{{ survivor.latitude }}</td>
+                    <td>{{ survivor.longitude }}</td>
+                    <td>{{ survivor.is_infected }}</td>
+                    <td>{{ survivor.total_points }}</td>
+                    <td>{{ survivor.received_reports }}</td>
+                    <td>
+                        <a href="{% url 'interface:survivor_detail' survivor.id %}">Detail</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="add-survivor-container">
+        <a href="{% url 'interface:add_survivor' %}">Add New Survivors</a>
+    </div>
+</div>
+{% endblock %}
