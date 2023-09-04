@@ -26,7 +26,6 @@ def survivor_detail(request, pk):
 def resources_report(request):
     response = requests.get('http://127.0.0.1:8000/api/survivors/get_resources_report/')
     context = {'report': response.json()}
-    print(response)
     return render(request, 'interface/resources_report.html', context)
 
 
@@ -87,6 +86,7 @@ def make_trade(request, pk):
             'survivor1_items': request.POST.getlist('survivor1_items'),
             'survivor2_items': request.POST.getlist('survivor2_items'),
         }
+        
         requests.post(
             f'http://127.0.0.1:8000/api/survivors/make_trade/', data=data
         )
