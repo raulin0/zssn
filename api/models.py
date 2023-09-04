@@ -7,6 +7,8 @@ class Survivor(models.Model):
         ('F', 'Female'),
     )
 
+    ITEMS = ["water", "food", "medication", "ammunition"]
+
     name = models.CharField(max_length=100, unique=True, db_index=True)
     age = models.PositiveIntegerField()
     gender = models.CharField(
