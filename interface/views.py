@@ -1,8 +1,7 @@
 import requests
-from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
-import json
+
 
 
 def survivors(request):
@@ -16,15 +15,18 @@ def survivor_detail(request, pk):
     response = requests.get(f'http://127.0.0.1:8000/api/survivors/{pk}/')
     survivor = response.json()
 
-    response = requests.get('http://127.0.0.1:8000/api/survivors/')
+    response = requests.get(f'http://127.0.0.1:8000/api/survivors/')
     survivors = response.json()
+
 
     context = {'survivor': survivor, 'survivors': survivors}
     return render(request, 'interface/survivor_detail.html', context)
 
 
 def resources_report(request):
-    response = requests.get('http://127.0.0.1:8000/api/survivors/get_resources_report/')
+    response = requests.get(
+        'http://127.0.0.1:8000/api/survivors/get_resources_report/'
+    )
     context = {'report': response.json()}
     return render(request, 'interface/resources_report.html', context)
 
@@ -32,8 +34,6 @@ def resources_report(request):
 def report_infected(request, pk):
     data = {
         'survivor_reported': request.POST.get('survivor_reported'),
-        'latitude': float(request.POST.get('latitude')),
-        'longitude': float(request.POST.get('longitude')),
     }
     response = requests.put(
         f'http://127.0.0.1:8000/api/survivors/{pk}/report_infected/', json=data
@@ -86,7 +86,7 @@ def make_trade(request, pk):
             'survivor1_items': request.POST.getlist('survivor1_items'),
             'survivor2_items': request.POST.getlist('survivor2_items'),
         }
-        
+
         requests.post(
             f'http://127.0.0.1:8000/api/survivors/make_trade/', data=data
         )
