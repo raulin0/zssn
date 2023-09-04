@@ -142,3 +142,74 @@ Example Response:
     "total_points_lost": 150
 }
 ```
+
+# Configurando e Executando o Projeto Python Localmente
+
+## System requirements
+ZSSN requires Python 3.11+ (it was developed with Python 3.11, so we do not guarantee it will work with earlier versions).
+
+## Instruções
+
+1. Verifique sua Instalação do Python
+   Para garantir que o Python esteja instalado, execute o comando abaixo em seu terminal:
+
+    ```bash
+    python --version
+    ```
+
+   Se você tiver uma configuração diferente, pode ser necessário usar:
+
+    ```bash
+    python3 --version
+    ```
+
+2. Acesse o Diretório do Projeto
+   Usando o terminal, navegue até o local onde o projeto foi salvo:
+
+    ```bash
+    cd caminho/para/o/diretorio/do/projeto
+    ```
+     
+3. Instalação das Dependências
+    Instale o poetry como gerenciador de pacotes:
+
+    ```bash
+    pip install poetry
+    ```
+
+4. Definição do local do ambiente virtual criado pelo poetry
+    Usando o terminal, altere as configurações padrões do poetry para criar o ambiente virtual dentro do diretório do projeto:
+
+    ```bash
+    poetry config virtualenvs.in-project true
+    ```
+
+5. Instalação das Dependências:
+    Instale as dependências que estão na raiz do projeto
+
+    ```bash
+    poetry install
+    ```
+
+6. Colete os arquivos estáticos do projeto
+
+    ```bash
+    python manage.py collectstatic
+    ```
+
+7. Crie o banco de dados
+
+    ```bash
+    python manage.py makemigrations
+    ```
+    ```bash
+    python manage.py migrate
+    ```
+
+8. Execute a aplicação
+
+    ```bash
+    python manage.py runserver
+    ```
+
+
