@@ -142,3 +142,74 @@ Example Response:
     "total_points_lost": 150
 }
 ```
+
+# Configuring and Running the Python Project Locally
+
+## System requirements
+ZSSN requires Python 3.11+ (it was developed with Python 3.11, so we do not guarantee it will work with earlier versions).
+
+## Instructions
+
+1. Check your Python Installation
+   To make sure Python is installed, run the command below in your terminal:
+
+    ```bash
+    python --version
+    ```
+
+   If you have a different configuration, you may need to use:
+
+    ```bash
+    python3 --version
+    ```
+
+2. Access the Project Directory
+   Using the terminal, navigate to the location where the project was saved:
+
+    ```bash
+    cd path/to/the/project/directory
+    ```
+     
+3. Installing dependencies
+    Install poetry as a package manager:
+
+    ```bash
+    pip install poetry
+    ```
+
+4. Defining the location of the virtual environment created by poetry
+    Using the terminal, change poetry's default settings to create the virtual environment inside the project directory:
+
+    ```bash
+    poetry config virtualenvs.in-project true
+    ```
+
+5. Installing the dependencies:
+    Install the dependencies that are in the root of the project
+
+    ```bash
+    poetry install
+    ```
+
+6. Collect the project's static files
+
+    ```bash
+    python manage.py collectstatic
+    ```
+
+7. Create the database
+
+    ```bash
+    python manage.py makemigrations
+    ```
+    ```bash
+    python manage.py migrate
+    ```
+
+8. Run the application
+
+    ```bash
+    python manage.py runserver
+    ```
+
+
