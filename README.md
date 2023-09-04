@@ -143,61 +143,61 @@ Example Response:
 }
 ```
 
-# Configurando e Executando o Projeto Python Localmente
+# Configuring and Running the Python Project Locally
 
 ## System requirements
 ZSSN requires Python 3.11+ (it was developed with Python 3.11, so we do not guarantee it will work with earlier versions).
 
-## Instruções
+## Instructions
 
-1. Verifique sua Instalação do Python
-   Para garantir que o Python esteja instalado, execute o comando abaixo em seu terminal:
+1. Check your Python Installation
+   To make sure Python is installed, run the command below in your terminal:
 
     ```bash
     python --version
     ```
 
-   Se você tiver uma configuração diferente, pode ser necessário usar:
+   If you have a different configuration, you may need to use:
 
     ```bash
     python3 --version
     ```
 
-2. Acesse o Diretório do Projeto
-   Usando o terminal, navegue até o local onde o projeto foi salvo:
+2. Access the Project Directory
+   Using the terminal, navigate to the location where the project was saved:
 
     ```bash
-    cd caminho/para/o/diretorio/do/projeto
+    cd path/to/the/project/directory
     ```
      
-3. Instalação das Dependências
-    Instale o poetry como gerenciador de pacotes:
+3. Installing dependencies
+    Install poetry as a package manager:
 
     ```bash
     pip install poetry
     ```
 
-4. Definição do local do ambiente virtual criado pelo poetry
-    Usando o terminal, altere as configurações padrões do poetry para criar o ambiente virtual dentro do diretório do projeto:
+4. Defining the location of the virtual environment created by poetry
+    Using the terminal, change poetry's default settings to create the virtual environment inside the project directory:
 
     ```bash
     poetry config virtualenvs.in-project true
     ```
 
-5. Instalação das Dependências:
-    Instale as dependências que estão na raiz do projeto
+5. Installing the dependencies:
+    Install the dependencies that are in the root of the project
 
     ```bash
     poetry install
     ```
 
-6. Colete os arquivos estáticos do projeto
+6. Collect the project's static files
 
     ```bash
     python manage.py collectstatic
     ```
 
-7. Crie o banco de dados
+7. Create the database
 
     ```bash
     python manage.py makemigrations
@@ -206,7 +206,7 @@ ZSSN requires Python 3.11+ (it was developed with Python 3.11, so we do not guar
     python manage.py migrate
     ```
 
-8. Execute a aplicação
+8. Run the application
 
     ```bash
     python manage.py runserver
