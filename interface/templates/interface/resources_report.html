@@ -1,0 +1,36 @@
+{% extends 'interface/base.html' %}
+{% block content %}
+<div tabindex="0" class="content" onfocus="closeSidebar()" id="content">
+  <div class="title-container">
+    <h1>Survivors Resources Report</h1>
+  </div>
+  <div class="resources-reports-table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Resource</th>
+          <th>Total</th>
+          <th>Average</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for resource, data in report.resources.items %}
+        <tr>
+          <td>{{ resource }}</td>
+          <td>{{ data.total }}</td>
+          <td>{{ data.average }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="resources-reports-container">
+      <p>Total Population: <u>{{ report.population.total }}</u></p>
+      <p>Infected: <u>{{ report.population.infected }}</u></p>
+      <p>Non-Infected: <u>{{ report.population.non_infected }}</u></p>
+      <p>Percent infected: <u>{{ report.population.percent_infected }}%</u></p>
+      <p>Percent non-infected: <u>{{ report.population.percent_non_infected }}%</u></p>
+      <p>Total points lost: <u>{{ report.total_points_lost }}</u></p>
+    </div>
+  </div>
+</div>
+{% endblock %}

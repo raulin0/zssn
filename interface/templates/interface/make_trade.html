@@ -1,0 +1,43 @@
+{% extends 'interface/base.html' %}
+{% block content %}
+<div tabindex="0" class="content" onfocus="closeSidebar()" id="content">
+  <div class="trade">
+    <div class="survivor-trade-container">
+      <h2>{{ survivor1.name }}</h2>
+      <p>Points: {{ survivor1.total_points }}</p>
+      <p>Water: {{ survivor1.water }}</p>
+      <p>Food: {{ survivor1.food }}</p>
+      <p>Medication: {{ survivor1.medication }}</p>
+      <p>Ammunition: {{ survivor1.ammunition }}</p>
+      <h2>{{ survivor2.name }}</h2>
+      <p>Points: {{ survivor2.total_points }}</p>
+      <p>Water: {{ survivor2.water }}</p>
+      <p>Food: {{ survivor2.food }}</p>
+      <p>Medication: {{ survivor2.medication }}</p>
+      <p>Ammunition: {{ survivor2.ammunition }}</p>
+    </div>
+    <div class="trade-container">
+      {% csrf_token %}
+      <div class="trade-items">
+        <h2>Items to trade</h2>
+        <form method="post" action="{% url 'interface:make_trade' survivor1.id %}">
+          <div class="resources">
+            <label>Water: <input type="number" name="survivor1_items" value="0"></label>
+            <label>Food: <input type="number" name="survivor1_items" value="0"></label>
+            <label>Medication: <input type="number" name="survivor1_items" value="0"></label>
+            <label>Ammunition: <input type="number" name="survivor1_items" value="0"></label>
+          </div>
+          <h2>Items to receive</h2>
+          <div class="resources">
+            <label>Water: <input type="number" name="survivor2_items" value="0"></label>
+            <label>Food: <input type="number" name="survivor2_items" value="0"></label>
+            <label>Medication: <input type="number" name="survivor2_items" value="0"></label>
+            <label>Ammunition: <input type="number" name="survivor2_items" value="0"></label>
+          </div>
+        <input type="hidden" name="survivor2" value="{{ survivor2.id }}">
+        <input type="submit" value="Make trade">
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

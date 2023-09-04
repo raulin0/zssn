@@ -1,0 +1,76 @@
+{% extends 'interface/base.html' %}
+{% block content %}
+<div tabindex="0" class="content" onfocus="closeSidebar()" id="content">
+  <div class="title-container">
+    <h1>Survivor Detail</h1>
+  </div>
+  <div class="detailed-table-container">
+    <table>
+      <thead>
+          <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Gender</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+              <th>Infected</th>
+              <th>Total Points</th>
+              <th>Received Reports</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>{{ survivor.name }}</td>
+              <td>{{ survivor.age }}</td>
+              <td>{{ survivor.gender }}</td>
+              <td>{{ survivor.latitude }}</td>
+              <td>{{ survivor.longitude }}</td>
+              <td>{{ survivor.is_infected }}</td>
+              <td>{{ survivor.total_points }}</td>
+              <td>{{ survivor.received_reports }}</td>
+          </tr>
+      </tbody>
+  </table>
+  <table>
+    <thead>
+        <tr>
+            <th>Water</th>
+            <th>Food</th>
+            <th>Medication</th>
+            <th>Ammunition</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr>
+          <td>{{ survivor.water }}</td>
+          <td>{{ survivor.food }}</td>
+          <td>{{ survivor.medication }}</td>
+          <td>{{ survivor.ammunition }}</td>
+      </tr>
+  </tbody>
+  </table>
+  <div class="actions-container">
+    <h2>Actions</h2>
+    <a href="{% url 'interface:update_location' survivor.id %}">Update Location</a>
+    <form action="{% url 'interface:make_trade' survivor.id %}" method="get">
+      {% csrf_token %}
+      Select a survivor: <select name="survivor2" id="survivor2">
+      {% for survivor in survivors %}
+        <option value="{{ survivor.id }}">{{ survivor.name }} | Reports: {{ survivor.received_reports }}</option>
+      {% endfor %}
+      </select>
+      <input type="submit" value="Make a Trade">
+    </form>
+    <form action="{% url 'interface:report_infected' survivor.id %}" method="post">
+      {% csrf_token %}
+      Select a survivor: <select name="survivor_reported" id="survivor_reported">
+      {% for survivor in survivors %}
+        <option value="{{ survivor.id }}">{{ survivor.name }} | Reports: {{ survivor.received_reports }}</option>
+      {% endfor %}
+      </select>
+      <input type="submit" value="Report Infected">
+    </form>
+    </div>
+  </div>
+  </div>
+{% endblock %}
