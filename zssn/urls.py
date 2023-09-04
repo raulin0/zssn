@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from api.views import SurvivorViewSet
 
@@ -28,3 +29,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
