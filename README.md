@@ -2,7 +2,7 @@
 This documentation provides detailed information on the API endpoints of the "ZSSN" project. This API allows you to manage survivors in a post-apocalyptic scenario, exchange items between survivors, report infections and get reports on resources and the survivor population.
 
 ## Base URL
-The base URL for the API is http://127.0.0.1:8000/api/. Make sure the Django server is running to access these endpoints.
+The base URL for the API is https://zssn.onrender.com/api/. Make sure the Django server is running to access these endpoints.
 
 ## Available Endpoints
 ### 1. /survivors/

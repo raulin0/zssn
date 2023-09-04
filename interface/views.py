@@ -5,17 +5,17 @@ from django.urls import reverse
 
 
 def survivors(request):
-    response = requests.get('http://127.0.0.1:8000/api/survivors/')
+    response = requests.get('https://zssn.onrender.com/api/survivors/')
     survivors = response.json()
     context = {'survivors': survivors}
     return render(request, 'interface/survivors.html', context)
 
 
 def survivor_detail(request, pk):
-    response = requests.get(f'http://127.0.0.1:8000/api/survivors/{pk}/')
+    response = requests.get(f'https://zssn.onrender.com/api/survivors/{pk}/')
     survivor = response.json()
 
-    response = requests.get(f'http://127.0.0.1:8000/api/survivors/')
+    response = requests.get(f'https://zssn.onrender.com/api/survivors/')
     survivors = response.json()
 
 
@@ -25,7 +25,7 @@ def survivor_detail(request, pk):
 
 def resources_report(request):
     response = requests.get(
-        'http://127.0.0.1:8000/api/survivors/get_resources_report/'
+        'https://zssn.onrender.com/api/survivors/get_resources_report/'
     )
     context = {'report': response.json()}
     return render(request, 'interface/resources_report.html', context)
@@ -36,7 +36,7 @@ def report_infected(request, pk):
         'survivor_reported': request.POST.get('survivor_reported'),
     }
     response = requests.put(
-        f'http://127.0.0.1:8000/api/survivors/{pk}/report_infected/', json=data
+        f'https://zssn.onrender.com/api/survivors/{pk}/report_infected/', json=data
     )
     return redirect(reverse('interface:survivor_detail', kwargs={'pk': pk}))
 
@@ -46,11 +46,11 @@ def update_location(request, pk):
         latitude = request.POST.get('latitude')
         longitude = request.POST.get('longitude')
         data = {'latitude': latitude, 'longitude': longitude}
-        requests.patch(f'http://127.0.0.1:8000/api/survivors/{pk}/', data=data)
+        requests.patch(f'https://zssn.onrender.com/api/survivors/{pk}/', data=data)
         return redirect(
             reverse('interface:survivor_detail', kwargs={'pk': pk})
         )
-    response = requests.get(f'http://127.0.0.1:8000/api/survivors/{pk}/')
+    response = requests.get(f'https://zssn.onrender.com/api/survivors/{pk}/')
     survivor = response.json()
     return render(
         request, 'interface/update_location.html', {'survivor': survivor}
@@ -73,7 +73,7 @@ def add_survivor(request):
             'total_points': 0,
             'received_reports': 0,
         }
-        requests.post('http://127.0.0.1:8000/api/survivors/', data=data)
+        requests.post('https://zssn.onrender.com/api/survivors/', data=data)
         return redirect(reverse('interface:survivors'))
     return render(request, 'interface/add_survivor.html')
 
@@ -88,17 +88,17 @@ def make_trade(request, pk):
         }
 
         requests.post(
-            f'http://127.0.0.1:8000/api/survivors/make_trade/', data=data
+            f'https://zssn.onrender.com/api/survivors/make_trade/', data=data
         )
         return redirect(
             reverse('interface:survivor_detail', kwargs={'pk': pk})
         )
 
-    response = requests.get(f'http://127.0.0.1:8000/api/survivors/{pk}/')
+    response = requests.get(f'https://zssn.onrender.com/api/survivors/{pk}/')
     survivor1 = response.json()
 
     response = requests.get(
-        f'http://127.0.0.1:8000/api/survivors/{request.GET["survivor2"]}/'
+        f'https://zssn.onrender.com/api/survivors/{request.GET["survivor2"]}/'
     )
     survivor2 = response.json()
 
